@@ -19,5 +19,5 @@ def obtener_pruebas_realizadas():
         }
 
     return f'''Pruebas realizadas: {objeto.get("Total_de_Pruebas")}
-    Positivas: {objeto.get("Positivas")}
-    Negativas: {objeto.get("Negativas")}'''
+Positivas: {objeto.get("Positivas")}
+Negativas: {objeto.get("Negativas")}'''

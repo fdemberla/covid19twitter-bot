@@ -37,18 +37,18 @@ def obtener_casos_por_corregimiento():
     def crear_lista_de_corregimientos(lista):
         string = "\n"
         for corregimiento in lista:
-            string += f'''{corregimiento.get('corregimiento')}:{corregimiento.get('casos_confirmados')}\n'''
+            string += f'''#{corregimiento.get('corregimiento')} : {corregimiento.get('casos_confirmados')}\n'''
         return string
 
     def crear_lista_de_tweets(lista_grande):
         conteo = 1
         lista_de_tweets = []
         for lista in chunks:
-                lista_de_tweets.append(f'''Casos Confirmados por Corregimiento ({conteo}/{len(chunks)}){crear_lista_de_corregimientos(lista)}''')
+                lista_de_tweets.append(f'''Casos Confirmados por Corregimiento ({conteo}/{len(chunks)}){crear_lista_de_corregimientos(lista)}#COVID19 #COVIDー19 #Panama''')
                 conteo += 1
         return lista_de_tweets
 
-    chunks = [nueva_lista[x:x+9] for x in range(0, len(nueva_lista), 9)]
+    chunks = [nueva_lista[x:x+9] for x in range(0, len(nueva_lista), 8)]
 
     return crear_lista_de_tweets(chunks)
 

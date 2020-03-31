@@ -36,7 +36,7 @@ Fallecidos: {objeto.get("fallecidos")} - Recuperados: {objeto.get("recuperados")
 Aislamiento: {objeto.get("aislamiento")}
 
 Actualizado cada 24 horas
-#Coronavirus #COVID19 #Panamá
- Fuente: MINSA https://bit.ly/3bDYxIV'''
+#Coronavirus #COVID19 #COVIDー19 #Panamá #ProtegetePanama #QuedateenCasa
+Fuente: MINSA https://bit.ly/3bDYxIV'''
 
     return tweet

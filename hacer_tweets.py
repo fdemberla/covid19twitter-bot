@@ -1,5 +1,4 @@
 import tweepy
-import os
 import time
 
 # importar scripts
@@ -8,12 +7,16 @@ from casos_principales import obtener_casos_principales
 from casos_por_genero import obtener_casos_por_genero
 from pruebas_realizadas import obtener_pruebas_realizadas
 from casos_por_corregimiento import obtener_casos_por_corregimiento
+from rango_de_edades import obtener_rango_de_edades
+
+#import keys
+from api_Keys import api_keys
 
 # Authenticate to Twitter
-auth = tweepy.OAuthHandler(os.environ.get("API_1"),
-                           os.environ.get("API_2"))
-auth.set_access_token(os.environ.get("API_TOKEN_1"),
-                      os.environ.get("API_TOKEN_2"))
+auth = tweepy.OAuthHandler(api_keys.get("API_1"),
+                           api_keys.get("API_2"))
+auth.set_access_token(api_keys.get("API_TOKEN_1"),
+                      api_keys.get("API_TOKEN_2"))
 
 api = tweepy.API(auth)
 
@@ -23,7 +26,8 @@ try:
     datos = obtener_casos_principales()
     pruebas = obtener_pruebas_realizadas()
     genero = obtener_casos_por_genero()
-    lista_de_tweets = [datos, pruebas, genero]
+    rango_de_edades = obtener_rango_de_edades()
+    lista_de_tweets = [datos, pruebas, genero, rango_de_edades]
     corregimientos = obtener_casos_por_corregimiento()
     print("Haciendo tweets!")
    # Hacer tweets
@@ -37,5 +41,4 @@ try:
             time.sleep(1)
     print("Tweets enviados con exito!")
 except:
-    print("Error en la extraccion de datos")
-    print(f"Auth problem")
+    print(f"Algo salio mal!")

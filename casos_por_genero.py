@@ -20,5 +20,6 @@ def obtener_casos_por_genero():
     print("Casos por genero extraidos!")
 
     return f'''Casos por genero:
-    Femenino: {objeto.get("femenino")}
-    Masculino: {objeto.get("masculino")}'''
+Femenino: {objeto.get("femenino")}
+Masculino: {objeto.get("masculino")}
+#COVID19 #Panama COVIDー19 #ProtegetePanama #QuedateenCasa'''

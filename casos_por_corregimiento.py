@@ -44,11 +44,12 @@ def obtener_casos_por_corregimiento():
         conteo = 1
         lista_de_tweets = []
         for lista in chunks:
-                lista_de_tweets.append(f'''Casos Confirmados por Corregimiento ({conteo}/{len(chunks)}){crear_lista_de_corregimientos(lista)}
-                ''')
+                lista_de_tweets.append(f'''Casos Confirmados por Corregimiento ({conteo}/{len(chunks)}){crear_lista_de_corregimientos(lista)}''')
                 conteo += 1
         return lista_de_tweets
 
     chunks = [nueva_lista[x:x+9] for x in range(0, len(nueva_lista), 9)]
 
     return crear_lista_de_tweets(chunks)
+
+print(obtener_casos_por_corregimiento())

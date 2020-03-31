@@ -4,8 +4,8 @@ import time
 
 # importar scripts
 from extraer_datos import extractor_de_datos
-from casos_principales import obtener_casos_principales 
-from casos_por_genero import obtener_casos_por_genero 
+from casos_principales import obtener_casos_principales
+from casos_por_genero import obtener_casos_por_genero
 from pruebas_realizadas import obtener_pruebas_realizadas
 from casos_por_corregimiento import obtener_casos_por_corregimiento
 
@@ -17,21 +17,17 @@ auth.set_access_token(os.environ.get("API_TOKEN_1"),
 
 api = tweepy.API(auth)
 
-datos = obtener_casos_principales()
-
-pruebas = obtener_pruebas_realizadas()
-
-genero = obtener_casos_por_genero()
-
-lista_de_tweets = [datos,pruebas,genero]
-
-corregimientos = obtener_casos_por_corregimiento()
-
 try:
-    
+    print("Extrayendo datos de la pagina web!")
+    extractor_de_datos()
+    datos = obtener_casos_principales()
+    pruebas = obtener_pruebas_realizadas()
+    genero = obtener_casos_por_genero()
+    lista_de_tweets = [datos, pruebas, genero]
+    corregimientos = obtener_casos_por_corregimiento()
     print("Haciendo tweets!")
-    # Hacer tweets
-    for tweet in lista_de_tweets:
+   # Hacer tweets
+   for tweet in lista_de_tweets:
         api.update_status(tweet)
         time.sleep(1)
 
@@ -40,7 +36,6 @@ try:
         api.update_status(tweet)
         time.sleep(1)
     print("Tweets enviados con exito!")
-
 except:
+    print("Error en la extraccion de datos")
     print(f"Auth problem")
-

@@ -27,14 +27,14 @@ try:
     corregimientos = obtener_casos_por_corregimiento()
     print("Haciendo tweets!")
    # Hacer tweets
-   for tweet in lista_de_tweets:
-        api.update_status(tweet)
-        time.sleep(1)
+    for tweet in lista_de_tweets:
+            api.update_status(tweet)
+            time.sleep(1)
 
-    # casos por corregimiento.
+        # casos por corregimiento.
     for tweet in corregimientos:
-        api.update_status(tweet)
-        time.sleep(1)
+            api.update_status(tweet)
+            time.sleep(1)
     print("Tweets enviados con exito!")
 except:
     print("Error en la extraccion de datos")

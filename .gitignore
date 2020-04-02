@@ -5,6 +5,7 @@ __pycache__/
 
 #visio settings 
 /.vscode
+/experimentos
 
 # C extensions
 *.so

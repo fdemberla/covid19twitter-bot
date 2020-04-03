@@ -35,7 +35,32 @@ def obtener_pruebas_realizadas():
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writerow(objeto)
 
+        import matplotlib.pyplot as plt
+
+        # Data to plot
+        labels = "Negativas", "Positivas"
+        sizes = [int(lista[-1].replace(",", "")), int(lista[1].replace(",", ""))]
+        colors = ["green", "red"]
+        explode = (0.1, 0)  # explode 1st slice
+
+        # Plot
+        plt.pie(
+            sizes,
+            explode=explode,
+            labels=labels,
+            colors=colors,
+            autopct="%1.1f%%",
+            shadow=True,
+            startangle=140,
+        )
+
+        plt.axis("equal")
+        plt.show()
+
     return f"""Pruebas realizadas: {objeto.get("Total_de_Pruebas")}
 Positivas: {objeto.get("Positivas")}
 Negativas: {objeto.get("Negativas")}
 #COVID19 #ProtegetePanama #Panama #Coronavirus"""
+
+
+obtener_pruebas_realizadas()

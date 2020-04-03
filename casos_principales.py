@@ -1,4 +1,9 @@
 from bs4 import BeautifulSoup
+import datetime
+import csv
+
+now = datetime.datetime.now()
+dia_de_hoy = f"{now.day}/{now.month}/{now.year}"
 
 
 def obtener_casos_principales():
@@ -19,6 +24,7 @@ def obtener_casos_principales():
         valores = list(map(convertir_a_numero, lista[1::2]))
 
         objeto = {
+            "fecha": dia_de_hoy,
             "activos": sum(valores) - (valores[2] + valores[0]),
             "recuperados": valores[0],
             "hospitalizados": valores[1],
@@ -27,6 +33,22 @@ def obtener_casos_principales():
             "uci": valores[-1],
             "total": sum(valores),
         }
+
+    with open(
+        f"./output/base_de_datos/base_de_datos_totales.csv", "a", newline="",
+    ) as csvfile:
+        fieldnames = [
+            "fecha",
+            "activos",
+            "recuperados",
+            "hospitalizados",
+            "fallecidos",
+            "aislamiento",
+            "uci",
+            "total",
+        ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writerow(objeto)
 
     print("Casos principales extraidos con exito!")
 

@@ -22,7 +22,7 @@ try:
     api.send_direct_message(usuario._json.get("id"), "Hola! Iniciando script!")
 
     print("Extrayendo datos de la pagina web!")
-    # extractor_de_datos()
+    extractor_de_datos()
     datos = obtener_casos_principales()
     pruebas = obtener_pruebas_realizadas()
     genero = obtener_casos_por_genero()

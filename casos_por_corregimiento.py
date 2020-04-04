@@ -75,6 +75,6 @@ def obtener_casos_por_corregimiento():
                 conteo += 1
             return lista_de_tweets
 
-        chunks = [nueva_lista[x : x + 8] for x in range(0, len(nueva_lista), 8)]
+        chunks = [nueva_lista[x : x + 10] for x in range(0, len(nueva_lista), 10)]
 
         return crear_lista_de_tweets(chunks)

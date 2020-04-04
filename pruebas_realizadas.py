@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import datetime
 import csv
+import matplotlib.pyplot as plt
+
 
 now = datetime.datetime.now()
 dia_de_hoy = f"{now.day}/{now.month}/{now.year}"
@@ -35,8 +37,6 @@ def obtener_pruebas_realizadas():
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writerow(objeto)
 
-        import matplotlib.pyplot as plt
-
         # Data to plot
         labels = "Negativas", "Positivas"
         sizes = [int(lista[-1].replace(",", "")), int(lista[1].replace(",", ""))]
@@ -55,12 +55,12 @@ def obtener_pruebas_realizadas():
         )
 
         plt.axis("equal")
-        plt.show()
+        plt.savefig("./output/graficas/grafica_pruebas_realizadas.png")
 
-    return f"""Pruebas realizadas: {objeto.get("Total_de_Pruebas")}
+    return {
+        "tweet": f"""Pruebas realizadas: {objeto.get("Total_de_Pruebas")}
 Positivas: {objeto.get("Positivas")}
 Negativas: {objeto.get("Negativas")}
-#COVID19 #ProtegetePanama #Panama #Coronavirus"""
-
-
-obtener_pruebas_realizadas()
+#COVID19 #ProtegetePanama #Panama #Coronavirus""",
+        "imagen": "./output/graficas/grafica_pruebas_realizadas.png",
+    }

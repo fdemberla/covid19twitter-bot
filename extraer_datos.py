@@ -43,6 +43,3 @@ def extractor_de_datos():
     print(f"Listo, cantidad de archivos html creados: {len(lista_div_id)}")
 
     browser.quit()
-
-
-extractor_de_datos()

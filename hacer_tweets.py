@@ -22,26 +22,38 @@ try:
     api.send_direct_message(usuario._json.get("id"), "Hola! Iniciando script!")
 
     print("Extrayendo datos de la pagina web!")
-    extractor_de_datos()
-    datos = obtener_casos_principales()
-    pruebas = obtener_pruebas_realizadas()
-    genero = obtener_casos_por_genero()
-    rango_de_edades = obtener_rango_de_edades()
-    lista_de_tweets = [datos, genero, rango_de_edades, pruebas]
+    # extractor_de_datos()
+
+    tweet_principal = obtener_casos_principales()
+
+    lista_de_tweets_con_graficas = [
+        obtener_casos_por_genero(),
+        obtener_rango_de_edades(),
+        obtener_pruebas_realizadas(),
+    ]
+
     corregimientos = obtener_casos_por_corregimiento()
     print("Haciendo tweets!")
     #    Hacer tweets
     cantidad_de_tweets = 0
     tweet_id_anterior = ""
-    for tweet in lista_de_tweets:
+
+    primer_tweet = api.update_status(tweet_principal)
+
+    tweet_id_anterior = primer_tweet._json.get("id")
+
+    for tweet in lista_de_tweets_con_graficas:
         cantidad_de_tweets += 1
-        tweet_actual = api.update_status(
-            tweet, in_reply_to_status_id=tweet_id_anterior, username="@PanamaCovid19"
+        tweet_actual = api.update_with_media(
+            tweet.get("imagen"),
+            tweet.get("tweet"),
+            in_reply_to_status_id=tweet_id_anterior,
+            username="@PanamaCovid19",
         )
         tweet_id_anterior = tweet_actual._json.get("id")
         time.sleep(1)
 
-        # casos por corregimiento.
+    # casos por corregimiento.
 
     time.sleep(10)
 
